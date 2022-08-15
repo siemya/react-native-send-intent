@@ -801,6 +801,7 @@ public class RNSendIntentModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void requestIgnoreBatteryOptimizations(final Promise promise) {
+        
         /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             PowerManager pm = (PowerManager) this.reactContext.getSystemService(Context.POWER_SERVICE);

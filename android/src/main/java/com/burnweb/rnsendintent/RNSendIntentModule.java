@@ -822,9 +822,10 @@ public class RNSendIntentModule extends ReactContextBaseJavaModule {
         */
         
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
-            if (!pm.isIgnoringBatteryOptimizations(packageName)) {
+            PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+            if (!pm.isIgnoringBatteryOptimizations(this.reactContext.getPackageName())) {
                 promise.resolve(true);
+                return;
             }
             promise.resolve(false);
         }

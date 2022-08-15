@@ -801,6 +801,7 @@ public class RNSendIntentModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void requestIgnoreBatteryOptimizations(final Promise promise) {
+        /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             PowerManager pm = (PowerManager) this.reactContext.getSystemService(Context.POWER_SERVICE);
 
@@ -817,8 +818,16 @@ public class RNSendIntentModule extends ReactContextBaseJavaModule {
                 }
             }
         }
-
         promise.resolve(false);
+        */
+        
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
+            if (!pm.isIgnoringBatteryOptimizations(packageName)) {
+                promise.resolve(true);
+            }
+            promise.resolve(false);
+        }
     }
 
     @ReactMethod
